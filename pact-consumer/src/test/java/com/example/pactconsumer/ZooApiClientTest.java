@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ZooApiClientTest {
     @Before
     public void beforeEach() {
         System.setProperty("pact.rootDir", "pacts");
-        client = new ZooApiClient();
+        client = new ZooApiClient(baseUrl(), new RestTemplate());
     }
 
     @Pact(consumer=CONSUMER)
@@ -53,6 +54,10 @@ public class ZooApiClientTest {
         );
 
         assertThat(client.listAnimals()).isEqualTo(expectedAnimals);
+    }
+
+    private String baseUrl() {
+        return String.format("http://localhost:%s", mockProvider.getPort());
     }
 
     private static String animalsJson = "{\n" +
