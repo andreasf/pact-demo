@@ -38,5 +38,8 @@ public class PactIntegrationTest {
     }
 
     @State("3 animals")
-    public void to3AnimalsState() { }
+    public void to3AnimalsState() {
+        ZooService zooService = context.getBean(ZooService.class);
+        zooService.setAnimalNames("cat", "dolphin", "sloth");
+    }
 }
