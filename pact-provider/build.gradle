@@ -28,4 +28,5 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('au.com.dius:pact-jvm-provider-junit_2.12:3.5.22')
 }
